@@ -958,12 +958,16 @@ function importChapterFromData(data) {
   banks.push({ name: data.name, questions: data.questions });
   renderBankList();
 }
+window.addEventListener("DOMContentLoaded", () => {
+  fetch("questions.json")
+    .then(res => res.json())
+    .then(data => {
+      console.log("Loaded JSON:", data);
+      importChapterFromData(data);
+    })
+    .catch(err => console.log("Failed to load default questions:", err));
+});
 
-fetch("questions.json")
-  .then(res => res.json())
-  .then(data => {
-    console.log("Loaded JSON:", data);
-    importChapterFromData(data);
   })
   .catch(() => console.log("No default questions found"));
   document.getElementById('template-modal').classList.add('show');
