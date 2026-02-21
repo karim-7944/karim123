@@ -968,11 +968,6 @@ window.addEventListener("DOMContentLoaded", () => {
     .catch(err => console.log("Failed to load default questions:", err));
 });
 
-  })
-  .catch(() => console.log("No default questions found"));
-  document.getElementById('template-modal').classList.add('show');
-}
-
 function copyTemplate() {
   navigator.clipboard.writeText(JSON.stringify(TEMPLATE, null, 2));
 }
