@@ -7,3 +7,4 @@ CS student exploring core concepts through practical, <br>idea-oriented projects
 [![](https://visitcount.itsvg.in/api?id=karim123&icon=0&color=13)](https://visitcount.itsvg.in)
 
 <!-- Proudly created with GPRM ( https://gprm.itsvg.in ) --># karim123
+https://karim-7944.github.io/karim123/
