@@ -938,7 +938,33 @@ function importChapter() {
 }
 
 function openTemplate() {
-  document.getElementById('template-pre').textContent = JSON.stringify(TEMPLATE, null, 2);
+ document.getElementById('template-pre').textContent = JSON.stringify(TEMPLATE, null, 2);
+
+// ==============================
+// AUTO LOAD DEFAULT QUESTIONS
+// ==============================
+
+function importChapterFromData(data) {
+  if (!data.name || !Array.isArray(data.questions)) return;
+
+  data.questions.forEach((q,i) => {
+    if (!q.text) return;
+    if (!q.type || !['mcq','integer'].includes(q.type)) return;
+    if (q.type === 'mcq' && (!Array.isArray(q.options) || q.options.length < 2)) return;
+    if (q.correct === undefined) return;
+    q._bank = data.name;
+  });
+
+  banks.push({ name: data.name, questions: data.questions });
+  renderBankList();
+}
+
+fetch("questions.json")
+  .then(res => res.json())
+  .then(data => {
+    importChapterFromData(data);
+  })
+  .catch(() => console.log("No default questions found"));
   document.getElementById('template-modal').classList.add('show');
 }
 
